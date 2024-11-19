@@ -11,7 +11,7 @@
 
 ### 1.1 목적
 
-본 문서는 전기자동차용 리튬이온 배터리의 Battery Management System(BMS)에 대한 소프트웨어 요구사항을 정의합니다.
+본 문서는 전기자동차용 리튬이온 배터리의 Battery Management System(BMS)에 대한 소프트웨어 요구사항을 정의한다.
 
 ### 1.2 범위
 
@@ -24,6 +24,24 @@
 - ISO 26262: Road vehicles - Functional safety
 - A-SPICE v3.1
 - IEC 61508: Functional Safety of E/E/PE Safety-related Systems
+
+### 1.4 용어
+
+| 용어 | 설명 |
+|------|------|
+| BMS (Battery Management System) | 배터리의 상태를 모니터링하고 제어하는 시스템 |
+| ASIL (Automotive Safety Integrity Level) | ISO 26262에서 정의하는 자동차 안전성 등급 (A~D, D가 최고 등급) |
+| SOC (State of Charge) | 배터리의 현재 충전 상태를 백분율로 나타내는 지표 |
+| SOH (State of Health) | 배터리의 수명 상태를 나타내는 지표로, 초기 용량 대비 현재 용량의 비율 |
+| SOF (State of Function) | 배터리의 현재 작동 가능 상태를 나타내는 지표 |
+| UDS (Unified Diagnostic Services) | 자동차 진단 통신 프로토콜 표준 |
+| MTBF (Mean Time Between Failures) | 시스템의 평균 고장 간격 시간 |
+| HIL (Hardware-in-the-Loop) | 실제 하드웨어와 연동하여 수행하는 시뮬레이션 테스트 |
+| FMEA (Failure Mode and Effects Analysis) | 잠재적 고장 모드와 영향을 분석하는 방법 |
+| AUTOSAR (AUTomotive Open System ARchitecture) | 자동차 소프트웨어 표준 아키텍처 |
+| RTOS (Real-Time Operating System) | 실시간 운영체제 |
+| MISRA-C | 자동차 산업에서 사용되는 C 언어 코딩 표준 |
+| A-SPICE (Automotive SPICE) | 자동차 소프트웨어 개발 프로세스 평가 모델 |
 
 ## 2. 기능 요구사항
 

@@ -1,21 +1,25 @@
 # Battery Monitoring Use Case Scenario with Parallel Actions (UC-BMS-MON-002)
 
 ## Use Case Name
+
 병렬 처리 기반 배터리 셀 모니터링 및 측정
 
 ## Actors
+
 - Primary Actor: BMS Controller
 - Secondary Actor: Vehicle Control Unit (VCU)
 - Secondary Actor: Diagnostic Tool
 - Secondary Actor: Data Storage Manager
 
 ## Preconditions
+
 1. BMS 시스템이 정상 작동 중
 2. 모든 센서가 정상 상태
 3. 전원 공급이 안정적
 4. 병렬 처리를 위한 멀티 코어 프로세서 활성화
 
 ## Post-conditions
+
 1. 배터리 측정값이 시스템에 기록됨
 2. 측정 데이터가 VCU에 전송됨
 3. 실시간 데이터 처리 완료
@@ -24,14 +28,17 @@
 ## Basic Path with Parallel Actions
 
 ### Initial Sequence
+
 1. BMS 시스템 초기화
 2. 센서 상태 확인
 3. 측정 주기 설정
 
 ### Parallel Action Fork Point [FORK]
+
 다음 작업들이 병렬로 실행됨:
 
 #### Parallel Branch A: 전압 측정 스트림
+
 1. A1. 전압 센서 데이터 수집 시작 (200ms 주기)
    - 셀 1~100 전압 측정
    - 측정 범위 확인 (2.5V ~ 4.2V)
@@ -43,6 +50,7 @@
    - 급격한 변화 감지
 
 #### Parallel Branch B: 온도 측정 스트림
+
 1. B1. 온도 센서 데이터 수집 시작 (1초 주기)
    - 셀 1~100 온도 측정
    - 측정 범위 확인 (-40°C ~ 85°C)
@@ -54,6 +62,7 @@
    - 열점(Hot spot) 감지
 
 #### Parallel Branch C: 전류 측정 스트림
+
 1. C1. 전류 센서 데이터 수집 시작 (100ms 주기)
    - 팩 전류 측정
    - 측정 범위 확인 (-400A ~ +400A)
@@ -65,12 +74,15 @@
    - 전력 소비량 추정
 
 ### Synchronization Point [JOIN]
+
 모든 병렬 작업의 결과가 다음 조건을 만족하면 동기화:
+
 1. 각 스트림의 데이터 수집 완료
 2. 데이터 무결성 검증 완료
 3. 임시 버퍼의 데이터 처리 완료
 
 ### Post-Join Sequence
+
 1. 통합 데이터 패키지 생성
    - 전압, 온도, 전류 데이터 통합
    - 타임스탬프 동기화
@@ -92,6 +104,7 @@
    - 리소스 상태 확인
 
 ## Critical Timing Requirements
+
 1. Fork에서 Join까지의 최대 허용 시간: 200ms
 2. 각 병렬 브랜치의 처리 시간:
    - 브랜치 A: 최대 150ms
@@ -100,6 +113,7 @@
 3. Join 후 시퀀스 처리 시간: 최대 50ms
 
 ## Resource Requirements
+
 1. CPU 코어 할당
    - 브랜치 A: Core 1
    - 브랜치 B: Core 2
@@ -112,6 +126,7 @@
    - 실시간 처리 큐: 64KB
 
 ## Synchronization Rules
+
 1. 데이터 동기화
    - 모든 측정값의 타임스탬프 편차 < 1ms
    - 데이터 시퀀스 번호 일치 확인
@@ -128,6 +143,7 @@
    - 에러 상태 전파
 
 ## Error Handling
+
 1. 병렬 처리 에러
    - 단일 브랜치 실패 시 대체 데이터 사용
    - 다중 브랜치 실패 시 안전 모드 전환

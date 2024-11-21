@@ -1,22 +1,22 @@
-# Overall Use Case Diagram
+# 전체 유스케이스 다이어그램
 
-## External Actors
+## 외부 액터
 
-Vehicle Control Unit (VCU)
-Charging Station (CS)
-Service Technician (ST)
-Battery Pack (BP)
+- 차량 제어 장치 (VCU)
+- 충전 스테이션 (CS)
+- 정비 기술자 (ST)
+- 배터리 팩 (BP)
 
-## Main Use Case Groups
+## 주요 유스케이스 그룹
 
-Monitoring (Battery Status, Cell Voltage, Temperature, Current)
-Protection (Overvoltage, Undervoltage, Overcurrent, Temperature)
-State Estimation (SOC, SOH, SOF)
-Communication (CAN Messages, Diagnostics)
-Safety (Fail-safe Mode, Error Logging)
+- 모니터링 (배터리 상태, 셀 전압, 온도, 전류)
+- 보호 기능 (과전압, 저전압, 과전류, 온도)
+- 상태 추정 (충전상태, 건강상태, 기능상태)
+- 통신 (CAN 메시지, 진단)
+- 안전 (페일세이프 모드, 오류 로깅)
 
-## Relationships
+## 관계
 
-Solid lines for direct relationships
-Dotted lines for dependencies
-Hierarchical structure within each use case group
+- 실선은 직접적인 관계
+- 점선은 의존성 관계
+- 각 유스케이스 그룹 내 계층 구조

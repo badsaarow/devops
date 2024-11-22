@@ -1,0 +1,13 @@
+services:
+  postgres:
+    image: postgres:14
+    container_name: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: gitlab
+      POSTGRES_PASSWORD: megazone!2024
+      POSTGRES_DB: gitlab
+    ports:
+      - '6543:5432'
+    volumes:
+      - './postgresql:/var/lib/postgresql/data'

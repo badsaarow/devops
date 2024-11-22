@@ -1,0 +1,46 @@
+- name: Setup GitLab and GitLab Runner Servers
+  hosts: gitlab_servers
+  become: true
+  tasks:
+    - name: Update and upgrade packages
+      apt:
+        update_cache: yes
+        upgrade: dist
+
+- name: Generate and exchange SSH keys
+  hosts: gitlab_runner
+  tasks:
+    - name: Generate SSH key pair
+      openssh_keypair:
+        path: /home/ncloud/.ssh/id_rsa
+        type: rsa
+        size: 2048
+        owner: ncloud
+        group: ncloud
+        mode: '0600'
+      register: keypair
+
+    - name: Copy public key to GitLab server
+      authorized_key:
+        user: ncloud
+        state: present
+        key: "{{ keypair.public_key }}"
+      delegate_to: gitlab
+
+- name: Install PostgreSQL CLI on GitLab
+  hosts: gitlab
+  become: true
+  tasks:
+    - name: Install PostgreSQL client
+      apt:
+        name: postgresql-client
+        state: present
+
+- name: Install Docker on GitLab
+  hosts: gitlab
+  become: true
+  tasks:
+    - name: Install Docker
+      apt:
+        name: docker.io
+        state: present
